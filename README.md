@@ -211,7 +211,9 @@ If you love our project, show your support by starring the repository. It adds a
 
 ## 🙏 Acknowledgments <a name="acknowledgements"></a>
 
-We tip our hats to the culinary wizards who inspired our recipe book.
+We express our gratitude to everyone who contributed to the development of Recipedaily.
+
+Special thanks to [Microverse](https://www.microverse.org/) for providing an incredible collaborative learning environment and making this project possible.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
