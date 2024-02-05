@@ -161,9 +161,11 @@ Let's introduce the brilliant minds behind Recipedaily.
 
 👨‍🍳 **MasterChef Dev**
 
-- GitHub: [@masterchefdev](https://github.com/masterchefdev)
-- Twitter: [@masterchefdev](https://twitter.com/masterchefdev)
-- LinkedIn: [MasterChef Dev](https://linkedin.com/in/masterchefdev)
+👤 **Alier Philip Maguet**
+
+- GitHub: [@AlierPM](https://github.com/AlierPM)
+- Twitter: [@AlierPM](https://twitter.com/AlierPM)
+- LinkedIn: [@AlierPM](https://www.linkedin.com/in/alierphilipmaguet/)
 
 👩‍🍳 **Code Cuisine Creator**
 
