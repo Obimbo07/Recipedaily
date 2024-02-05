@@ -237,6 +237,6 @@ Special thanks to [Microverse](https://www.microverse.org/) for providing an inc
 
 ## 📝 License <a name="license"></a>
 
-This project is [MIT](./LICENSE) licensed. We invite you to cook up your own creative ideas using our recipe.
+This project is [MIT](./License) licensed. We invite you to cook up your own creative ideas using our recipe.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
