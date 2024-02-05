@@ -84,31 +84,72 @@ Hungry for a sneak peek? Take a bite at the [Recipedaily Live Demo](https://your
 
 ## 💻 Getting Started <a name="getting-started"></a>
 
-Let's fire up those stoves and get cooking!
+> The following steps were used in creating this project:
+
+1. Set up the project by creating a new directory from the generated repository.
+
+2. Set up the repository on GitHub and use Gitflow.
+
+3. Initialize the project with Rubocop linters.
+
+> To get a local copy up and running, follow these steps.
 
 ### Prerequisites
 
 In order to run this project, you need:
 
+1. Ruby installed:
+   - On macOS using Homebrew:
+
+     ```sh
+     brew install ruby
+     ```
+
+   - On Windows or Linux, follow the installation instructions from [Ruby's official website](https://www.ruby-lang.org/en/documentation/installation/).
+
+2. Rails Installed:
+
+   ```sh
+   gem install rails
+   ```
+
 ### Setup
 
 Clone this repository to your desired folder:
+```sh
+  git clone https://github.com/AlierPM/Recipedaily.git
+```
 
 ### Install
 
-Install this project with:
+Navigate to the Recipedaily directory:
+
+```sh
+  cd Recipedaily
+```
 
 ### Usage
 
-To run the project, execute the following command:
+Open the project in your preferred code editor:
+```sh
+   cd recipedaily
+   code .
+```
 
-### Run Tests
+### Run project
 
-To run tests, run the following command:
+To run from the local server, execute the following command:
 
-### Deployment
+```sh
+  rails server
+```
+### Run tests
 
-Serve your masterpiece to the world by deploying with:
+To run tests, execute the following command:
+
+```sh
+  rpec spec
+```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
