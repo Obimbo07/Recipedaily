@@ -5,5 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :confirmable, :lockable, :timeoutable, :trackable
 
+  has_many :recipe
+  has_many :foods
+
   validates :name, presence: true
 end
