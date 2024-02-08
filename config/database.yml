@@ -24,24 +24,30 @@ default: &default
 development:
   <<: *default
   database: Recipedaily_development
+  
+ # username: your_postgres_username
+ # password: your_postgres_password
+
+  host: localhost
+  port: 5432
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
   # When left blank, postgres will use the default role. This is
   # the same name as the operating system user running Rails.
-  username: postgres
+  #username: postgres
 
   # The password associated with the postgres role (username).
-  password: postgressUser
+  #password: postgressUser
 
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have
   # domain sockets, so uncomment these lines.
-  host: localhost
+  #host: localhost
 
   # The TCP port the server listens on. Defaults to 5432.
   # If your server runs on a different port number, change accordingly.
-  port: 5000
+  #port: 5000
 
   # Schema search path. The server defaults to $user,public
   #schema_search_path: myapp,sharedapp,public
@@ -82,5 +88,5 @@ test:
 production:
   <<: *default
   database: Recipedaily_production
-  username: postgres
+  username: Recipedaily
   password: <%= ENV["RECIPEDAILY_DATABASE_PASSWORD"] %>
