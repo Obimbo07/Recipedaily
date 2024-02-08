@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :recipe_foods
+  resources :foods
+  resources :recipes
+  get '/public_recipes', to: 'recipes#public_recipes'
   root 'home#index'
   devise_for :users, controllers: {
     sessions: 'users/sessions',
