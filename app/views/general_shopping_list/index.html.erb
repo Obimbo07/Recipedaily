@@ -1,0 +1,9 @@
+<h2>Shopping List</h2>
+<p>Total Food Items: <%= @total_food_items %></p>
+<p>Total Price: <%= number_to_currency(@total_price) %></p>
+
+<ul>
+  <% @missing_foods.each do |food| %>
+    <li><%= food.name %> - <%= number_to_currency(food.price) %></li>
+  <% end %>
+</ul>

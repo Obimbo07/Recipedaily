@@ -1,14 +1,26 @@
-<p style="color: green"><%= notice %></p>
-
-<h1>Recipes</h1>
-
-<div id="recipes">
+<div class="row justify-content-center g-4">
   <% @recipes.each do |recipe| %>
-    <%= render recipe %>
-    <p>
-      <%= link_to "Show this recipe", recipe %>
-    </p>
+    <div class="col-md-8">
+      <div class="card h-100 shadow">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-6">
+              <h5 class="card-title">
+                <%= link_to recipe.name, recipe_path(recipe), class: "text-decoration-none" %>
+              </h5>
+              <% if user_signed_in? && current_user == recipe.user %>
+                <%= form_with(model: recipe, method: :delete, local: true, data: { confirm: "Are you sure?" }) do |form| %>
+                  <%= form.submit "Remove", class: "btn btn-danger mt-2" %>
+                <% end %>
+              <% end %>
+            </div>
+            <div class="col-md-6">
+              <p class="card-text"><%= recipe.description %></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   <% end %>
 </div>
 
-<%= link_to "New recipe", new_recipe_path %>

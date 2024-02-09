@@ -8,4 +8,8 @@ class Recipe < ApplicationRecord
   def total_price
     foods.sum(:price)
   end
+
+  scope :general_shopping_list, ->(user) {
+    where(user_id: user.id).joins(:foods).where.not(foods: { id: user.foods.pluck(:id) })
+  }
 end
