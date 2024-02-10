@@ -1,10 +1,18 @@
-<h2>Public Recipes</h2>
-<ul>
-    <% @public_recipes.each do |recipe| %>  
-    <li><%= recipe.name %>
-    Total Food Items: <%= recipe.foods.count %>
-    Total Price: <%= recipe.total_price %>
-    By: <%= recipe.user.name %>
-    </li>
-    <% end %>
-</ul>
+<h2 class="text-center">Public Recipes</h2>
+<div class="container-fluid recipe-foods">
+<% @public_recipes.each do |recipe| %>
+<div class="card">
+    <div class="d-flex justify-content-around">
+        <div class="p-2">
+             <h3><%= recipe.name %></h3>
+            <h5>By: <%= recipe.user.name%></h5>
+        </div>
+        <div class="d-flex flex-column align-self-center p-2">
+            Total Food Items: <%= recipe.foods.count %>
+            <br>
+            Total Price: <%= recipe.total_price %>
+        </div>    
+    </div>
+</div>   
+<% end %>
+</div>
