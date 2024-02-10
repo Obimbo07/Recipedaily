@@ -1,6 +1,6 @@
-<%= form_with(model: food) do |form| %>
+<%= form_with(model: food, class: "mt-4") do |form| %>
   <% if food.errors.any? %>
-    <div style="color: red">
+    <div class="alert alert-danger">
       <h2><%= pluralize(food.errors.count, "error") %> prohibited this food from being saved:</h2>
 
       <ul>
@@ -11,32 +11,28 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+  <div class="mb-3">
+    <%= form.label :name, class: "form-label" %>
+    <%= form.text_field :name, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :measurement_unit, class: "form-label" %>
+    <%= form.text_field :measurement_unit, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :price, class: "form-label" %>
+    <%= form.text_field :price, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :quantity, class: "form-label" %>
+    <%= form.number_field :quantity, class: "form-control" %>
   </div>
 
   <div>
-    <%= form.label :measurement_unit, style: "display: block" %>
-    <%= form.text_field :measurement_unit %>
-  </div>
-
-  <div>
-    <%= form.label :price, style: "display: block" %>
-    <%= form.text_field :price %>
-  </div>
-
-  <div>
-    <%= form.label :quantity, style: "display: block" %>
-    <%= form.number_field :quantity %>
-  </div>
-
-  <div>
-    <%= form.label :user_id, style: "display: block" %>
-    <%= form.text_field :user_id %>
-  </div>
-
-  <div>
-    <%= form.submit %>
+    <%= form.submit "Save Food", class: "btn btn-primary" %>
+    <%= link_to "Cancel", foods_path, class: "btn btn-secondary" %>
   </div>
 <% end %>

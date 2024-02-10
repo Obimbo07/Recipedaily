@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
   <div class="container-fluid">
     <%= link_to 'Recipedaily', root_path, class: 'navbar-brand' %>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -9,6 +9,26 @@
         <li class="nav-item">
           <%= link_to 'Home', root_path, class: 'nav-link active', 'aria-current': 'page' %>
         </li>
+
+        <% if user_signed_in? %>
+          <li class="nav-item">
+            <%= link_to 'Create Recipe', new_recipe_path, class: 'nav-link' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'My Recipes', recipes_path, class: 'nav-link' %>
+          </li>
+          <!-- Add the link to Food resource here -->
+          <li class="nav-item">
+            <%= link_to 'Add Food', new_food_path, class: 'nav-link' %>
+          </li>
+            <li class="nav-item">
+            <%= link_to 'General Shopping List', general_shopping_list_path, class: 'nav-link' %>
+            </li>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to 'Public Recipes', public_recipes_path, class: 'nav-link' %>
+          </li>
+        <% end %>
       </ul>
 
       <% if user_signed_in? %>
@@ -17,6 +37,7 @@
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <%= current_user.name %>
             </a>
+
             <ul class="dropdown-menu dropdown-menu-end">
               <%= link_to 'Sign Out', destroy_user_session_path, data: { turbo_method: :delete }, class: 'dropdown-item' %>
               <!-- Add more actions here -->

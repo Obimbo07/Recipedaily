@@ -1,10 +1,32 @@
-<p style="color: green"><%= notice %></p>
+<div class="container-fluid p-2">
+  <div class="card">
+    <h3 class="card-title text-center"><%= @recipe.name %></h3>
+    <div class="card-body">
+      <span class="text-start">Preparation time:<%= @recipe.preparation_time %> hours</span>
+       <% if user_signed_in? && current_user == @recipe.user %>
+      <div class="d-flex justify-content-end form-check form-switch">
+        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" <%= 'checked' if @recipe.public %> >
+        <label class="form-check-label" for="flexSwitchCheckDefault">Public</label>
+      </div>
+      <% end %>
 
-<%= render @recipe %>
+      <span class="text-start">Cooking time: <%= @recipe.cooking_time %> hours</span>
+      <span class="text-start d-flex flex-direction-column"><%= @recipe.description %></span>
+      <div class="d-flex justify-content-around p-2 border-bottom">
+        <button type="button" class="btn btn-success">Generate Shopping List</button>
+       <!-- Display the Add Ingredient -->
+
+       <%= link_to 'Add Ingredient', new_recipe_food_path(@recipe_food), class: 'btn btn-success' %>
+      
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= render 'recipe_foods/recipe_food', recipe: @recipe %>
 
 <div>
   <%= link_to "Edit this recipe", edit_recipe_path(@recipe) %> |
   <%= link_to "Back to recipes", recipes_path %>
-
   <%= button_to "Destroy this recipe", @recipe, method: :delete %>
 </div>
