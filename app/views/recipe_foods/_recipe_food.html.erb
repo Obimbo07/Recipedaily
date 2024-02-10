@@ -1,17 +1,23 @@
-<div id="<%= dom_id recipe_food %>">
-  <p>
-    <strong>Quantity:</strong>
-    <%= recipe_food.quantity %>
-  </p>
-
-  <p>
-    <strong>Recipe:</strong>
-    <%= recipe_food.recipe_id %>
-  </p>
-
-  <p>
-    <strong>Food:</strong>
-    <%= recipe_food.recipe_id %>
-  </p>
-
-</div>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Food</th>
+      <th>Quantity</th>
+      <th>Value</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @recipe.recipe_foods.each do |recipe_food| %>
+      <tr>
+        <td><%= recipe_food.food.name %></td>
+        <td><%= recipe_food.quantity %></td>
+        <td><%= number_to_currency(recipe_food.food.price * recipe_food.quantity ) %></td>
+        <td>
+          <%= link_to 'Modify', edit_recipe_food_path(@recipe, recipe_food), class: 'btn btn-warning btn-sm' %>
+          <%= link_to 'Remove', recipe_food_path(@recipe, recipe_food), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

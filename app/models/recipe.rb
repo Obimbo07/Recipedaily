@@ -9,7 +9,7 @@ class Recipe < ApplicationRecord
     foods.sum(:price)
   end
 
-  scope :general_shopping_list, ->(user) {
+  scope :general_shopping_list, lambda { |user|
     where(user_id: user.id).joins(:foods).where.not(foods: { id: user.foods.pluck(:id) })
   }
 end

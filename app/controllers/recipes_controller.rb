@@ -10,6 +10,7 @@ class RecipesController < ApplicationController
   # GET /recipes/1 or /recipes/1.json
   def show
     @recipe = Recipe.find(params[:id])
+    @recipe_food = RecipeFood.new
   end
 
   # GET /recipes/new
@@ -71,6 +72,13 @@ class RecipesController < ApplicationController
   def toggle_public
     @recipe.toggle!(:public)
     redirect_to @recipe, notice: 'Recipe status toggled successfully.'
+  end
+
+  def generate_shopping_list
+    @recipe = Recipe.find(params[:id])
+    @shopping_list = @recipe.generate_shopping_list
+
+    respond_to(&:js)
   end
 
   private
