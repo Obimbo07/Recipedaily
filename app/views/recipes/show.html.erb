@@ -3,15 +3,18 @@
     <h3 class="card-title text-center"><%= @recipe.name %></h3>
     <div class="card-body">
       <span class="text-start">Preparation time:<%= @recipe.preparation_time %> hours</span>
+       <% if user_signed_in? && current_user == @recipe.user %>
       <div class="d-flex justify-content-end form-check form-switch">
         <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" <%= 'checked' if @recipe.public %> >
         <label class="form-check-label" for="flexSwitchCheckDefault">Public</label>
       </div>
+      <% end %>
+
       <span class="text-start">Cooking time: <%= @recipe.cooking_time %> hours</span>
       <span class="text-start d-flex flex-direction-column"><%= @recipe.description %></span>
       <div class="d-flex justify-content-around p-2 border-bottom">
         <button type="button" class="btn btn-success">Generate Shopping List</button>
-        <%= button_to "Add Ingredient", new_recipe_food_path, class: "btn btn-success" %>
+        <%= link_to "Add Ingredient", new_recipe_food_path(@recipe), class: "btn btn-success" %>
       </div>
       <div class="h-50 shadow">
         <table class="table">

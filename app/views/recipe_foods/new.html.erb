@@ -1,9 +1,20 @@
-<h1>New recipe food</h1>
+<!-- app/views/recipe_foods/new.html.erb -->
 
-<%= render "form", recipe_food: @recipe_food %>
+<%= form_for [@recipe, RecipeFood.new] do |form| %>
+  <div class="mb-3">
+    <%= form.label :food_id, 'Food' %>
+    <%= form.collection_select :food_id, Food.all, :id, :name, { prompt: 'Select a food' }, class: 'form-control' %>
+  </div>
 
-<br>
+  <div class="mb-3">
+    <%= form.label :quantity %>
+    <%= form.number_field :quantity, class: 'form-control' %>
+  </div>
 
-<div>
-  <%= link_to "Back to recipe foods", recipe_foods_path %>
-</div>
+  <div class="mb-3">
+    <%= form.label :value, 'Price' %>
+    <%= form.text_field :value, class: 'form-control' %>
+  </div>
+
+  <%= form.submit 'Add Ingredient', class: 'btn btn-success' %>
+<% end %>

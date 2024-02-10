@@ -68,6 +68,11 @@ class RecipesController < ApplicationController
     @public_recipes = Recipe.public_recipes.includes(:user, :foods)
   end
 
+  def toggle_public
+    @recipe.toggle!(:public)
+    redirect_to @recipe, notice: 'Recipe status toggled successfully.'
+  end
+
   private
 
   def current_user_owns_recipe?

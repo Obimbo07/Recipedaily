@@ -24,15 +24,11 @@ class RecipeFoodsController < ApplicationController
   # POST /recipe_foods or /recipe_foods.json
   def create
     @recipe_food = RecipeFood.new(recipe_food_params)
-
-    respond_to do |format|
-      if @recipe_food.save
-        format.html { redirect_to recipe_food_url(@recipe_food), notice: "Recipe food was successfully created." }
-        format.json { render :show, status: :created, location: @recipe_food }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @recipe_food.errors, status: :unprocessable_entity }
-      end
+    @recipe_food.recipe = Recipe.find(params[:recipe_id])
+    if @recipe_food.save
+      redirect_to @recipe_food.recipe, notice: 'Ingredient added successfully.'
+    else
+      render :new
     end
   end
 
@@ -60,13 +56,14 @@ class RecipeFoodsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_recipe_food
-      @recipe_food = current_user.recipe_foods.find(params[:recipe_id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def recipe_food_params
-      params.require(:recipe_food).permit(:quantity, :food_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_recipe_food
+    @recipe_food = current_user.recipe_foods.find(params[:recipe_id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def recipe_food_params
+    params.require(:recipe_food).permit(:name, :quantity, :price)
+  end
 end
