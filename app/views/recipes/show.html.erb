@@ -16,7 +16,7 @@
         <button type="button" class="btn btn-success">Generate Shopping List</button>
        <!-- Display the Add Ingredient -->
 
-       <%= link_to 'Add Ingredient', new_recipe_food_path(@recipe_food), class: 'btn btn-success' %>
+       <%= link_to 'Add Ingredient', new_recipe_food_path(recipe_id: @recipe.id), class: 'btn btn-success' %>
       
       </div>
     </div>

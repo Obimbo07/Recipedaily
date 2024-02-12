@@ -7,10 +7,9 @@ class RecipesController < ApplicationController
     @recipes = current_user.recipes
   end
 
-  # GET /recipes/1 or /recipes/1.json
   def show
     @recipe = Recipe.find(params[:id])
-    @recipe_food = RecipeFood.new
+    @recipe_foods = @recipe.recipe_foods
   end
 
   # GET /recipes/new
@@ -89,7 +88,7 @@ class RecipesController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_recipe
-    @recipe = Recipe.find(params[:id])
+    @recipe = Recipe.find(params[:recipe_id] || params.dig(:recipe_food, :recipe_id) || params[:id])
   end
 
   # Only allow a list of trusted parameters through.

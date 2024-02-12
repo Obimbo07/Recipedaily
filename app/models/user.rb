@@ -7,6 +7,7 @@ class User < ApplicationRecord
 
   has_many :recipes, dependent: :destroy
   has_many :foods
+  has_many :recipe_foods, through: :recipes
 
   validates :name, presence: true
 
