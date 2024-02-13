@@ -1,6 +1,6 @@
 class RecipeFoodsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_recipe # only: %i[index show]
+  before_action :set_recipe, only: %i[index show edit create update destroy]
   before_action :set_recipe_food, only: %i[edit update destroy]
 
   def index
@@ -50,7 +50,12 @@ class RecipeFoodsController < ApplicationController
   private
 
   def set_recipe
-    @recipe = Recipe.find(params[:recipe_id]) if params[:recipe_id].present?
+    if params[:recipe_id].present? && params[:id].present?
+      @recipe = Recipe.find(params[:recipe_id])
+    else
+      # Handle the case where the recipe or recipe_food is not found
+      redirect_to recipes_path, alert: 'Recipe or RecipeFood not found.'
+    end
   end
 
   def set_recipe_food
