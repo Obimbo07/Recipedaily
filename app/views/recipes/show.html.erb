@@ -13,8 +13,9 @@
       <span class="text-start">Cooking time: <%= @recipe.cooking_time %> hours</span>
       <span class="text-start d-flex flex-direction-column"><%= @recipe.description %></span>
       <div class="d-flex justify-content-around p-2 border-bottom">
-        <button type="button" class="btn btn-success">Generate Shopping List</button>
-       <!-- Display the Add Ingredient -->
+        <div>
+        <%= link_to 'Generate Shopping List', generate_shopping_list_recipe_path,  class: 'btn btn-success'  %>
+        </div>
 
        <%= link_to 'Add Ingredient', new_recipe_food_path(recipe_id: @recipe.id), class: 'btn btn-success' %>
       
