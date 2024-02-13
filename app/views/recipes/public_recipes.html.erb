@@ -1,5 +1,5 @@
 <h2 class="text-center">Public Recipes</h2>
-<div class="container-fluid recipe-foods">
+<div class="container-fluid d-flex gap-4 flex-column recipe-foods">
 <% @public_recipes.each do |recipe| %>
 <div class="card">
     <div class="d-flex justify-content-around">
@@ -8,9 +8,9 @@
             <h5>By: <%= recipe.user.name%></h5>
         </div>
         <div class="d-flex flex-column align-self-center p-2">
-            Total Food Items: <%= recipe.foods.count %>
+            Total Food Items: $<%= recipe.foods.count %>
             <br>
-            Total Price: <%= recipe.total_price %>
+            Total Price: $<%= recipe.total_price %>
         </div>    
     </div>
 </div>   
