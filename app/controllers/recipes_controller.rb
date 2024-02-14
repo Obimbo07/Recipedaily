@@ -1,6 +1,6 @@
 class RecipesController < ApplicationController
   before_action :authenticate_user!, except: [:public_recipes]
-  before_action :set_recipe, only: %i[show edit update destroy]
+  before_action :set_recipe, only: %i[show edit update destroy generate_shoping_list]
 
   # GET /recipes or /recipes.json
   def index
@@ -69,15 +69,11 @@ class RecipesController < ApplicationController
   end
 
   def toggle_public
-    @recipe.toggle!(:public)
-    redirect_to @recipe, notice: 'Recipe status toggled successfully.'
-  end
-
-  def generate_shopping_list
     @recipe = Recipe.find(params[:id])
-    @shopping_list = @recipe.generate_shopping_list
-
-    respond_to(&:js)
+    @recipe.update(public: params[:recipe][:public])
+    respond_to do |format|
+      format.json { render json: { success: true } }
+    end
   end
 
   private

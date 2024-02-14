@@ -15,7 +15,7 @@
         <td><%= number_to_currency(recipe_food.food.price * recipe_food.quantity ) %></td>
         <td>
           <%= link_to 'Modify', edit_recipe_recipe_food_path(@recipe, recipe_food), class: 'btn btn-primary btn-sm' %>
-          <%= link_to 'Remove', recipe_food_path(recipe_food), method: :delete, data: { turbo_method: :delete, confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
+          <%= link_to 'Remove', recipe_recipe_food_path(recipe_food.recipe.id, recipe_food), data: { turbo_method: :delete, confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
         </td>
       </tr>
     <% end %>
