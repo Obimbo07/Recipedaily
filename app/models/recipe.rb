@@ -16,4 +16,21 @@ class Recipe < ApplicationRecord
   scope :general_shopping_list, lambda { |user|
     where(user_id: user.id).joins(:foods).where.not(foods: { id: user.foods.pluck(:id) })
   }
+
+  def generate_shoping_list
+    # Assuming you have a 'foods' association, adjust this based on your actual associations
+    foods = self.foods
+
+    # Perform logic to generate the shopping list
+    foods.map do |food|
+      {
+        name: food.name,
+        quantity: food.quantity, # Add your logic here
+        price: food.price,
+        total_price: food.quantity * food.price # You might want to calculate total price
+      }
+    end
+
+    # Return the generated shopping list
+  end
 end
