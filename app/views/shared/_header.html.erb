@@ -7,15 +7,12 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <%= link_to 'Home', root_path, class: 'nav-link active', 'aria-current': 'page' %>
+          <%= link_to 'Public Recipes', root_path, class: 'nav-link active', 'aria-current': 'page' %>
         </li>
 
         <% if user_signed_in? %>
           <li class="nav-item">
             <%= link_to 'Create Recipe', new_recipe_path, class: 'nav-link' %>
-          </li>
-          <li class="nav-item">
-            <%= link_to 'My Recipes', recipes_path, class: 'nav-link' %>
           </li>
           <!-- Add the link to Food resource here -->
           <li class="nav-item">
@@ -24,10 +21,6 @@
             <li class="nav-item">
             <%= link_to 'General Shopping List', general_shopping_list_path, class: 'nav-link' %>
             </li>
-        <% else %>
-          <li class="nav-item">
-            <%= link_to 'Public Recipes', public_recipes_path, class: 'nav-link' %>
-          </li>
         <% end %>
       </ul>
 
