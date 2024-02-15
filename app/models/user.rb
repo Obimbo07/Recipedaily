@@ -5,13 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :confirmable, :lockable, :timeoutable, :trackable
 
-  has_many :recipes, dependent: :destroy
+  has_many :recipes
   has_many :foods
-  has_many :recipe_foods, through: :recipes
-
-  validates :name, presence: true
-
-  def general_shopping_list
-    Recipe.general_shopping_list(self)
-  end
 end
