@@ -1,68 +1,73 @@
 class RecipeFoodsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_recipe, only: %i[index show edit create update destroy]
-  before_action :set_recipe_food, only: %i[edit update destroy]
-
-  def index
-    @recipe_foods = RecipeFood.all
-    @recipes = Recipe.includes(:recipe_foods).all
-  end
-
-  def show
-    @recipe_food = RecipeFood.find(params[:id])
-  end
 
   def new
     @recipe_food = RecipeFood.new
+    @recipe = Recipe.find(params[:recipe_id])
   end
 
   def edit
-    # @recipe and @recipe_food are already set by set_recipe_food method
+    @recipe_food = RecipeFood.find(params[:id])
+    @recipe = Recipe.find(params[:recipe_id])
+    @edit = true
   end
 
   def create
-    @recipe = Recipe.find(params.dig(:recipe_food, :recipe_id))
-    @recipe_food = @recipe.recipe_foods.build(recipe_food_params)
-
-    if @recipe_food.save
-      redirect_to recipe_path(@recipe), notice: 'Ingredient added successfully.'
+    @food = Food.find_by(name: params[:recipe_food][:food_name])
+    @recipe = Recipe.find(params[:recipe_food][:recipe_id])
+    if @food
+      @recipe_food = RecipeFood.find_or_initialize_by(food_id: @food.id, recipe_id: @recipe.id)
+      quantity_change = params[:recipe_food][:quantity].to_i
+      if @recipe_food.quantity.nil?
+        @recipe_food.quantity = quantity_change
+      else
+        @recipe_food.quantity += quantity_change
+      end
+      if @recipe_food.save
+        @food.update(quantity: @food.quantity - quantity_change)
+        redirect_to recipe_url(@recipe), notice: 'Recipe ingredient was successfully added.'
+      else
+        render :new, status: :unprocessable_entity
+      end
     else
-      render 'recipes/show'
+      redirect_to new_recipe_recipe_food_path(@recipe), alert: 'Food not available, Add it first.'
     end
   end
 
   def update
-    if @recipe_food.update(recipe_food_params)
-      redirect_to recipe_path(@recipe_food.recipe), notice: 'Recipe food was successfully updated.'
+    @recipe_food = RecipeFood.find(params[:id])
+    @old_quantity = @recipe_food.quantity
+
+    @new_quantity = if @old_quantity > (params[:recipe_food][:quantity]).to_i
+                      @old_quantity - (params[:recipe_food][:quantity]).to_i
+                    else
+                      (params[:recipe_food][:quantity]).to_i - @old_quantity
+                    end
+    @recipe_food.update(quantity: params[:recipe_food][:quantity])
+    @food = Food.find(@recipe_food.food_id)
+    @quantity = @food.quantity - @new_quantity
+    @food.update(quantity: @quantity)
+    if @recipe_food.save
+      redirect_to recipe_url(@recipe_food.recipe.id), notice: 'Ingredient quantity was successfully updated.'
     else
-      render :edit, status: :unprocessable_entity
+      render :new, status: :unprocessable_entity
     end
   end
 
   def destroy
-    if @recipe_food.destroy
-      redirect_to @recipe_food.recipe, notice: 'Recipe food was successfully removed.'
-    else
-      redirect_to @recipe_food.recipe, alert: 'Failed to remove recipe food.'
-    end
+    @recipe_food = RecipeFood.find(params[:id])
+    @recipe = Recipe.find(params[:recipe_id])
+    @food = Food.find(@recipe_food.food_id)
+    @quantity = @food.quantity + @recipe_food.quantity
+    @food.update(quantity: @quantity)
+    return unless @recipe_food.destroy
+
+    redirect_to recipe_url(@recipe), notice: 'Recipe ingredient was successfully removed.'
   end
 
   private
 
-  def set_recipe
-    if params[:recipe_id].present? && params[:id].present?
-      @recipe = Recipe.find(params[:recipe_id])
-    else
-      # Handle the case where the recipe or recipe_food is not found
-      redirect_to recipes_path, alert: 'Recipe or RecipeFood not found.'
-    end
-  end
-
-  def set_recipe_food
-    @recipe_food = RecipeFood.find(params[:id])
-  end
-
   def recipe_food_params
-    params.require(:recipe_food).permit(:recipe_id, :food_id, :quantity).transform_values(&:to_i)
+    params.require(:recipe_food).permit(:quantity, :food_name, :recipe_id)
   end
 end

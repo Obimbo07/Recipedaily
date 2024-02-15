@@ -1,17 +1,16 @@
 Rails.application.routes.draw do
-  get '/public_recipes', to: 'recipes#public_recipes'
-  root 'recipes#public_recipes'
+  root 'recipes#public' 
+  get 'public_recipes', to: 'public_recipes#index', as: :public_recipes
   
+  resources :public_recipes, only: [:index]
   resources :recipe_foods
   resources :foods
   resources :recipes do
-    member do
-      patch 'toggle_public'
-    end
-    resources :recipe_foods, only: %i[new create edit update destroy]
+    put 'toggle_public', on: :member
+    resources :recipe_foods
   end
-  get 'general_shoping_list', to: 'general_shoping#index'
-
+  get 'general_shopping_list', to: 'general_shopping_list#index' 
+  
   devise_for :users, controllers: {
     sessions: 'users/sessions',
     registrations: 'users/registrations',

@@ -1,26 +1,26 @@
-<div class="row justify-content-center g-4">
+<div class="row justify-content-center">
+  <div class="col-lg-4 col-10 d-flex ">
+    <% if @public_page %>
+      <h1 class="text-success">Public Recipes</h1>
+    <% else %> 
+      <h1 class="text-success">My Recipes</h1>
+     <%= link_to "Add new recipe", new_recipe_path, class: 'm-lg-3 m-2' %>
+    <% end %>
+  </div>
+  
+</div>
+
+
+<div id="recipes" class="row justify-content-center">
+  <% if @recipes.present? %>
   <% @recipes.each do |recipe| %>
-    <div class="col-md-8">
-      <div class="card h-100 shadow">
-        <div class="card-body">
-          <div class="row">
-            <div class="col-md-6">
-              <h5 class="card-title">
-                <%= link_to recipe.name, recipe_path(recipe), class: "text-decoration-none" %>
-              </h5>
-              <% if user_signed_in? && current_user == recipe.user %>
-                <%= form_with(model: recipe, method: :delete, local: true, data: { confirm: "Are you sure?" }) do |form| %>
-                  <%= form.submit "Remove", class: "btn btn-danger mt-2" %>
-                <% end %>
-              <% end %>
-            </div>
-            <div class="col-md-6">
-              <p class="card-text"><%= recipe.description %></p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+     <div class="row col-lg-8 col-12 border my-2 py-3">
+       <%= render recipe %>
+  </div>
+  <% end %>
+  <% else %>
+   <h4 class="text-center p-5">you have no recipes</h4>
   <% end %>
 </div>
+
 

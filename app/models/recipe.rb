@@ -5,8 +5,12 @@ class Recipe < ApplicationRecord
 
   scope :public_recipes, -> { where(public: true) }
 
+  # def total_price
+  #   foods.sum(:price)
+  # end
+
   def total_price
-    foods.sum(:price)
+    recipe_foods.sum { |rf| rf.food.price * rf.quantity }
   end
 
   scope :general_shopping_list, lambda { |user|

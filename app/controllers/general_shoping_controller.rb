@@ -4,7 +4,7 @@ class GeneralShopingController < ApplicationController
   def generate_shopping_list
     @shopping_list = @recipe.generate_shopping_list
     @recipe = Recipe.find(params[:id])
-    
+
     # Generate the shopping list for the recipe
     @shopping_list = @recipe.generate_shopping_list
 
