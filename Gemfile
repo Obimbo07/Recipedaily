@@ -55,9 +55,7 @@ group :development do
   gem 'web-console'
 
   gem 'capybara'
-
-  gem 'selenium-webdriver'
-
+  gem 'rails-controller-testing'
   gem 'webdrivers'
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
@@ -69,6 +67,7 @@ end
 
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
+  gem 'selenium-webdriver'
 end
 
 gem 'devise'
