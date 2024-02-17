@@ -1,17 +1,17 @@
-RSpec.feature 'Foods Show page', type: :feature do 
+RSpec.feature 'Foods Show page', type: :feature do
   let(:user_email) { 'trick@gmail.com' }
   let(:user_password) { 'f4k3p455w0rd' }
-  
+
   before(:each) do
     user = User.find_or_create_by(email: user_email) do |u|
       u.password = user_password
       u.confirm
     end
     login_as(user, scope: :user)
-    @food = Food.create(name: 'Rice', measurement_unit: 'kg', price: 10, quantity: 20, user: user)
+    @food = Food.create(name: 'Rice', measurement_unit: 'kg', price: 10, quantity: 20, user:)
     visit food_path(@food)
   end
-  
+
   scenario 'Users view individual food' do
     expect(page).to have_content('Rice')
     expect(page).to have_content('kg')
