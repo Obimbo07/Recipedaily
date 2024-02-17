@@ -9,7 +9,10 @@ require 'rspec/rails'
 
 require 'capybara/rspec'
 Capybara.register_driver :selenium_chrome do |app|
-  Capybara::Selenium::Driver.new(app, browser: :chrome)
+  options = Selenium::WebDriver::Chrome::Options.new
+  options.add_argument('--headless') # Add this line if you're running headlessly
+
+  Capybara::Selenium::Driver.new(app, browser: :chrome, options:)
 end
 
 Capybara.default_driver = :selenium_chrome
@@ -46,6 +49,7 @@ Dir[Rails.root.join('spec', 'support', '**', '*.rb')].each { |f| require f }
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = Rails.root.join('spec/fixtures')
+  config.include Devise::Test::IntegrationHelpers, type: :feature
 
   config.include RequestSpecHelper, type: :request
 
@@ -54,8 +58,6 @@ RSpec.configure do |config|
   # examples within a transaction, remove the following line or assign false
   # instead of true.
   config.use_transactional_fixtures = true
-  config.include Devise::Test::IntegrationHelpers, type: :feature
-
   # You can uncomment this line to turn off ActiveRecord support entirely.
   # config.use_active_record = false
 
