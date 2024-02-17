@@ -25,7 +25,7 @@ class RecipeFoodsController < ApplicationController
       end
       if @recipe_food.save
         @food.update(quantity: @food.quantity - quantity_change)
-        flash[:notice] = 'Ingredient was successfully added.'
+        flash[:notice] = 'Recipe ingredient was successfully added.'
         redirect_to recipe_url(@recipe)
       else
         render :new, status: :unprocessable_entity
@@ -49,7 +49,7 @@ class RecipeFoodsController < ApplicationController
     @quantity = @food.quantity - @new_quantity
     @food.update(quantity: @quantity)
     if @recipe_food.save
-      flash[notice] = 'Ingredient quantity was successfully updated.'
+      flash[:notice] = 'Ingredient quantity was successfully updated.'
       redirect_to recipe_url(@recipe_food.recipe.id)
     else
       render :new, status: :unprocessable_entity
@@ -66,7 +66,7 @@ class RecipeFoodsController < ApplicationController
     return unless @recipe_food.destroy
 
     redirect_to recipe_url(@recipe)
-    flash[:notice] = 'Ingredient was successfully removed.'
+    flash[:notice] = 'Recipe ingredient was successfully removed.'
   end
 
   private

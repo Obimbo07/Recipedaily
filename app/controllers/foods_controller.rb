@@ -1,5 +1,5 @@
 class FoodsController < ApplicationController
-  before_action :set_food, only: %i[show destroy]
+  before_action :set_food, only: %i[show edit destroy]
   before_action :authenticate_user!, except: %i[index show new]
 
   def index
@@ -14,6 +14,10 @@ class FoodsController < ApplicationController
     return if @food
 
     redirect_to foods_path, flash[alert] = 'Food not found.'
+  end
+
+  def edit
+    # No need for additional code here, just rendering the edit view
   end
 
   def new
@@ -33,6 +37,7 @@ class FoodsController < ApplicationController
 
   # DELETE /foods/1 or /foods/1.json
   def destroy
+    @food = Food.find(params[:id])
     @food.destroy
     redirect_to foods_url
     flash[:notice] = 'Food was successfully destroyed.'
