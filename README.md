@@ -209,7 +209,7 @@ If you love our project, show your support by starring the repository. It adds a
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-<!-- ACKNOWLEDGEMENTS -->
+<!-- ACKNOWLEDGEMENTS FOR -->
 
 ## 🙏 Acknowledgments <a name="acknowledgements"></a>
 

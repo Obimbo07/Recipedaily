@@ -1,0 +1,21 @@
+<h2 class="text-center">Public Recipes</h2>
+<div class="container-fluid recipe-foods">
+  <div class="row m-auto mx-4">
+    <div class="col-12">
+      <% @public_recipes.each do |recipe| %>
+        <div class="card mb-4 p-4" style="width: 80%">
+          <div class="d-flex align-items-center justify-content-between">
+            <div>
+              <h3><%= link_to recipe.name, recipe_path(recipe) %></h3>
+              <p class="text-muted m-0">By: <%= recipe.user.name %></p>
+            </div>
+            <div class="text-end">
+              <p class="m-0">Total Items: <%= recipe.foods.count %></p>
+              <p class="m-0">Total Price: <%= number_to_currency(recipe.total_price) %></p>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -13,3 +13,6 @@
  *= require_tree .
  *= require_self
  */
+.recipe-foods {
+  width: 70%;
+}
