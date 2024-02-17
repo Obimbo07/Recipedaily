@@ -25,8 +25,10 @@ class RecipesController < ApplicationController
   def create
     @recipe = Recipe.new(recipe_params)
     @recipe.user = current_user
+
     if @recipe.save
-      redirect_to recipe_url(@recipe), notice: 'Recipe was  created successfully.'
+      flash[notice] = 'Recipe was  created successfully.'
+      redirect_to recipe_url(@recipe)
     else
       render :new, status: :unprocessable_entity
     end
@@ -45,6 +47,7 @@ class RecipesController < ApplicationController
     @recipe_foods = @recipe.recipe_foods
     @recipe_foods.each(&:destroy)
     @recipe.destroy
+    flash[:notice] = 'Recipe was successfully destroyed.'
     redirect_to recipes_path
   end
 

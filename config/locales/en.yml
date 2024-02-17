@@ -31,3 +31,102 @@
 
 en:
   hello: "Hello world"
+  recipe:
+    create:
+      success: "Recipe was successfully created."
+      failure: "Recipe was not created."
+    update:
+      success: "Recipe was successfully updated."
+      failure: "Recipe was not updated."
+    destroy:
+      success: "Recipe was successfully removed."
+      failure: "Recipe was not removed."
+
+  recipe_food:
+    create:
+      success: "Recipe ingredient was successfully added."
+      failure: "Food not available, Add it first."
+    update:
+      success: "Ingredient quantity was successfully updated."
+    destroy:
+      success: "Recipe ingredient was successfully removed."
+
+  food: 
+    create:
+      success: "Food was successfully added."
+      failure: "Food was not added."
+    update:
+      success: "Food was successfully updated."
+      failure: "Food was not updated."
+    destroy:
+      success: "Food was successfully removed."
+      failure: "Food was not removed."
+
+  user:    
+    create:
+      success: "User was successfully created."
+      failure: "User was not created."
+    update:
+      success: "User was successfully updated."
+      failure: "User was not updated."
+    destroy:
+      success: "User was successfully removed."
+      failure: "User was not removed."
+    login:
+      success: "User was successfully logged in."
+      failure: "User was not logged in."
+    logout:
+      success: "User was successfully logged out."
+      failure: "User was not logged out."
+    not_found: "User not found."
+    invalid: "Invalid credentials."
+    unauthorized: "Unauthorized access."
+    already_exists: "User already exists."
+    not_created: "User not created."
+    not_updated: "User not updated."
+    not_removed: "User not removed."
+    not_logged_in: "User not logged in."
+    not_logged_out: "User not logged out."
+    not_authorized: "User not authorized."
+    not_found: "User not found."
+    not_valid: "User not valid."
+
+  session:   
+    create:
+      success: "Session was successfully created."
+      failure: "Session was not created."
+    update:
+      success: "Session was successfully updated."
+      failure: "Session was not updated."
+    destroy:
+      success: "Session was successfully removed."
+      failure: "Session was not removed."
+    not_found: "Session not found."
+    invalid: "Invalid session."
+    unauthorized: "Unauthorized session."
+    already_exists: "Session already exists."
+    not_created: "Session not created."
+    not_updated: "Session not updated."
+    not_removed: "Session not removed."
+    not_authorized: "Session not authorized."
+    not_found: "Session not found."
+    not_valid: "Session not valid."
+
+  ingredient: 
+    create:
+      success: "Ingredient was successfully added."
+      failure: "Ingredient was not added."
+    update:
+      success: "Ingredient was successfully updated."
+      failure: "Ingredient was not updated."
+    destroy:
+      success: "Ingredient was successfully removed."
+      failure: "Ingredient was not removed."
+    not_found: "Ingredient not found."
+    not_created: "Ingredient not created."
+    not_updated: "Ingredient not updated."
+    not_removed: "Ingredient not removed."
+
+    
+
+
