@@ -29,4 +29,4 @@ RSpec.feature 'Foods Show page', type: :feature do
     expect(page).to have_link('Edit this food')
     expect(page).to have_link('Destroy this food')
   end
-end``
+end
