@@ -167,11 +167,10 @@ Let's introduce the brilliant minds behind Recipedaily.
 - Twitter: [@AlierPM](https://twitter.com/AlierPM)
 - LinkedIn: [@AlierPM](https://www.linkedin.com/in/alierphilipmaguet/)
 
-👩‍🍳 **Code Cuisine Creator**
+👩‍🍳 **Austin Obimbo**
 
-- GitHub: [@codecuisinecreator](https://github.com/codecuisinecreator)
-- Twitter: [@codecuisinecreator](https://twitter.com/codecuisinecreator)
-- LinkedIn: [Code Cuisine Creator](https://linkedin.com/in/codecuisinecreator)
+- GitHub: [@obimbo07](https://github.com/obimbo07)
+- LinkedIn: [LinkedIn](https://linkedin.com/in/austin-obimbo)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
